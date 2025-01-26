@@ -8,13 +8,8 @@ export class LessonResolver {
   constructor(private readonly lessonService: LessonService) {}
 
   @Query((returns) => LessonType)
-  lesson() {
-    return {
-      id: '1',
-      name: 'Physics class',
-      startDate: new Date().toISOString(),
-      ednDate: new Date().toISOString(),
-    };
+  lesson(@Args('id') id: string): Promise<Lesson | null> {
+    return this.lessonService.getLesson(id);
   }
 
   @Mutation((returns) => LessonType)

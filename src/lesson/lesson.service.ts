@@ -11,6 +11,10 @@ export class LessonService {
     private readonly lessonRepository: Repository<Lesson>,
   ) {}
 
+  async getLesson(id: string): Promise<Lesson | null> {
+    return this.lessonRepository.findOne({ where: { id } });
+  }
+
   async createLesson(
     name: string,
     startDate: string,
