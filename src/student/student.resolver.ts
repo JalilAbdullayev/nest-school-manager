@@ -8,6 +8,11 @@ import { Student } from './student.entity';
 export class StudentResolver {
   constructor(private readonly studentService: StudentService) {}
 
+  @Query((returns) => StudentType)
+  student(@Args('id') id: string): Promise<Student | null> {
+    return this.studentService.getOne(id);
+  }
+
   @Query((returns) => [StudentType])
   students(): Promise<Student[]> {
     return this.studentService.getAll();
